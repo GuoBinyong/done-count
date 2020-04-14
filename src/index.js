@@ -1,4 +1,4 @@
-import {createUniqueIdentifier} from '@tools/ByTool'
+import {createUniqueIdentifier} from 'com-tools'
 
 /**
  * DoneCount
@@ -48,7 +48,7 @@ export class DoneCount{
    */
   constructor(totalOrOptions){
     if (typeof totalOrOptions == "object"){
-      var {total,...otherProps} = options;
+      var {total,...otherProps} = totalOrOptions;
     }else {
       total = totalOrOptions;
     }
@@ -104,7 +104,7 @@ export class DoneCount{
   /**
    * 登录新的完成次数
    * @param num : number
-   * @returns {*}
+   * @returns boolean 是否完成
    */
   doneAgain(num = 1){
     this.doneNum += num;
@@ -137,7 +137,7 @@ export class NamedDoneCount extends DoneCount{
   constructor(totalOrOptions){
 
     if (typeof totalOrOptions == "object"){
-      var {total,namesOrNum,names,doneNum,...otherProps} = options;
+      var {total,namesOrNum,names,doneNum,...otherProps} = totalOrOptions;
     }else {
       total = totalOrOptions;
     }

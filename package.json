@@ -4,7 +4,7 @@
   "description": "done-count 也叫做 完成计数，用于统计一组操作的完成情况",
   "main": "dist/done-count.umd.js",
   "module": "src/index",
-  "types": "dist/index.d.ts",
+  "types": "types/index.d.ts",
   "sideEffects": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -17,15 +17,13 @@
     "url": "https://github.com/GuoBinyong/done-count"
   },
   "keywords": [
-    "前端库",
-    "web库",
+    "完成",
+    "计数",
+    "统计",
+    "完成计数",
+    "完成统计",
     "done count",
-    "webpack",
-    "打包",
-    "构建",
-    "配置",
-    "模板",
-    "公共代码"
+    "statistics"
   ],
   "author": "郭斌勇",
   "license": "ISC",
@@ -80,5 +78,8 @@
     "webpack-cli": "^3.3.11",
     "webpack-merge": "^4.2.2",
     "webpack-node-externals": "^1.7.2"
+  },
+  "dependencies": {
+    "com-tools": "^1.0.6"
   }
 }

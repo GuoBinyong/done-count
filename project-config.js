@@ -77,7 +77,7 @@ var projectConfig = {
     {
       // target: "web",   //设置被构建的包的运行环境
       // filename: '[name].amd.js',  //输出的包名
-      // library: "",  //库名
+      library: "done-count",  //库名
       libraryTarget: "amd",  //将库构建成遵循 commonjs2 规范的包
       externals: undefined,  //排除 node_module 中的所有依赖
     },
@@ -137,7 +137,11 @@ var projectConfig = {
        * 如果更改了 library 的值，你可能需要考虑下是否要同步更改下 package.json 中的 name 属性；
        * 如果库不对外导出（暴露）任何东西里，推荐将该 library 设置为 null
   */
-  // library: "",
+  library: {
+    root: "dc",
+    commonjs: "done-count",
+    amd:"done-count"
+  },
 
   /*
   配置对外暴露 库 的方式，即：库将会以哪种方式被使用；webpack 的 output.libraryTarget；
@@ -153,7 +157,7 @@ var projectConfig = {
     - 备注： 如果设置成空字符串 "" ，则会导出包含所有导出的对象；
     - 详细信息： <https://webpack.docschina.org/configuration/output/#output-libraryexport>
   */
-  libraryExport: "default",
+  libraryExport: "",
 
   /*
   webpack 的 resolve.alias，创建 import 或 require 的别名，来使模块引入变得更简单
@@ -178,7 +182,14 @@ var projectConfig = {
     - **默认值：** `webpackNodeExternals()` ； 即排除所有 `node_modules` 中的模块； `webpackNodeExternals` 是 webpack-node-externals 包提供的功能，该包的信息详见 <https://github.com/liady/webpack-node-externals> ；
     - 详细信息： <https://webpack.docschina.org/configuration/externals/#externals>
   */
-  // externals: {},
+  externals: {
+    "com-tools":{
+      root:"comTools",
+      commonjs:"com-tools",
+      commonjs2: "com-tools",
+      amd:"com-tools"
+    }
+  },
 
 
 
@@ -194,7 +205,7 @@ var projectConfig = {
      If true, your code will be linted during bundling and
      linting errors and warnings will be shown in the console.
     */
-   useEslint: true,
+   useEslint: false,
 
    /*
    是否在浏览器中显示 Eslint 的错误和警告；
@@ -243,14 +254,14 @@ var projectConfig = {
 
 
 
-  /* 
+  /*
   是否要对 `node_modules` 中的模块进行编译；
     - **类型：** boolean
     - **默认值：** `true`
     - **说明：** 如果设置为 `false`，则 `node_modules` 中的依赖会被直接包含，不会经过 webpack 相应 loader 的处理；
   */
   // parseNodeModules:true,
-  
+
 
 
 

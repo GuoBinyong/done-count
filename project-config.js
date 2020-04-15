@@ -182,14 +182,14 @@ var projectConfig = {
     - **默认值：** `webpackNodeExternals()` ； 即排除所有 `node_modules` 中的模块； `webpackNodeExternals` 是 webpack-node-externals 包提供的功能，该包的信息详见 <https://github.com/liady/webpack-node-externals> ；
     - 详细信息： <https://webpack.docschina.org/configuration/externals/#externals>
   */
-  externals: {
+/*  externals: {
     "com-tools":{
       root:"comTools",
       commonjs:"com-tools",
       commonjs2: "com-tools",
       amd:"com-tools"
     }
-  },
+  },*/
 
 
 

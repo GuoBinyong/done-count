@@ -1,9 +1,7 @@
-interface DoneCountProps {
-  total?:number;
-  doneNum?:number;
+export interface DoneCountProps {
+  total?: number;
+  doneNum?: number;
 }
-
-
 
 
 /**
@@ -11,21 +9,20 @@ interface DoneCountProps {
  * 完成计数
  * 用于统计一组操作的完成情况
  */
-export class DoneCount{
+export class DoneCount {
 
   /**
    * forcedDone : boolean     强制完成标识
    */
-  forcedDone:boolean;
-
+  forcedDone: boolean;
 
 
   //总数量
-  total:number;
+  total: number;
 
 
   //已完成数量
-  doneNum:number;
+  doneNum: number;
 
 
   /**
@@ -34,33 +31,31 @@ export class DoneCount{
    * DoneCountOptions = total:number | DoneCountProps
    * DoneCountProps = {total:number,doneNum:number}
    */
-  constructor(totalOrOptions?:number|DoneCountProps);
+  constructor(totalOrOptions?: number | DoneCountProps);
 
-  readonly undoneNum:number;
+  readonly undoneNum: number;
 
 
   /**
    * done : boolean   只读；表示是否完成
    */
-  readonly done:boolean;
+  readonly done: boolean;
 
   /**
    * realDone : boolean   只读；表示实际上是否真正的完成
    */
-  readonly realDone:boolean;
-
+  readonly realDone: boolean;
 
 
   /**
    * 重置
    */
-  reset():void;
+  reset(): void;
 
   /**
    * 重置
    */
-  resetDoneNum():void;
-
+  resetDoneNum(): void;
 
 
   /**
@@ -68,29 +63,25 @@ export class DoneCount{
    * @param num : number
    * @returns boolean 是否完成
    */
-  doneAgain(num?:number):boolean
+  doneAgain(num?: number): boolean
 
 }
 
 
+export type DoneNames = string | string[];
+export type DoneNum = number
 
+export type DoneNamesOrNum = DoneNames | DoneNum;
 
-type DoneNames = string | string[];
-type DoneNum = number
-
-type DoneNamesOrNum = DoneNames | DoneNum;
-
-interface NamedDoneCountProps extends DoneCountProps{
-  namesOrNum ?: DoneNamesOrNum;
-  names ?: DoneNames;
-  autoIncrTotalIfRepeat ?:boolean;
-  maxRepetNum ?:number;
+export interface NamedDoneCountProps extends DoneCountProps {
+  namesOrNum?: DoneNamesOrNum;
+  names?: DoneNames;
+  autoIncrTotalIfRepeat?: boolean;
+  maxRepetNum?: number;
 }
 
 
-
-
-export class NamedDoneCount extends DoneCount{
+export class NamedDoneCount extends DoneCount {
 
   /**
    *
@@ -101,56 +92,49 @@ export class NamedDoneCount extends DoneCount{
    * Names : string | [string]
    * DoneNum : number
    */
-  constructor(totalOrOptions:number | NamedDoneCountProps);
+  constructor(totalOrOptions: number | NamedDoneCountProps);
 
 
   /**
    * 当 name 重复时，是否自动增长 total
    * @type {boolean}
    */
-  autoIncrTotalIfRepeat?:boolean;
+  autoIncrTotalIfRepeat?: boolean;
 
 
-  total:number;
+  total: number;
 
 
-  oriTotal:number;
+  oriTotal: number;
 
 
-
-  readonly nameRecord:Map<string,number>;
+  readonly nameRecord: Map<string, number>;
 
 
   /**
    * 最大重复数目
    * @type {number}
    */
-  maxRepetNum:number;
-
+  maxRepetNum: number;
 
 
   /**
    * 获取所有 name 的总计数
    * @returns {number}
    */
-  readonly nameNum:number;
+  readonly nameNum: number;
 
 
-
-  protected _doneNum:number;
-
-
-  doneNum:number;
+  protected _doneNum: number;
 
 
-
+  doneNum: number;
 
 
   /**
    * 重置
    */
-  resetDoneNum():void;
-
+  resetDoneNum(): void;
 
 
   /**
@@ -160,17 +144,17 @@ export class NamedDoneCount extends DoneCount{
    * DoneNames = string | [string]
    * @returns {*}
    */
-  doneAgain(namesOrNum?:DoneNamesOrNum):boolean;
+  doneAgain(namesOrNum?: DoneNamesOrNum): boolean;
 
 
   /**
    * @param names : DoneNames
    * @returns {*}
    */
-  doneAgainNames(names:DoneNames):boolean;
+  doneAgainNames(names: DoneNames): boolean;
 
 
-  has(name:string):boolean;
+  has(name: string): boolean;
 
 
   /**
@@ -178,34 +162,29 @@ export class NamedDoneCount extends DoneCount{
    * @param name
    * @returns {*|number}
    */
-  getNameNum(name:string):number;
+  getNameNum(name: string): number;
 
 
   /**
    * 获取最大的 name 计数
    * @returns {number}
    */
-  readonly maxNameNum:number;
-
+  readonly maxNameNum: number;
 
 
 }
-
-
-
 
 
 /**
  * 冲突策略 ConflictPolicy 类型常量
  * ConflictPolicy = "Add" | "Reset" | "Recreate" | "Update"
  */
-export  const conflictPolicy_Add = "Add";
-export  const conflictPolicy_Reset = "Reset";
-export  const conflictPolicy_Recreate = "Recreate";
-export  const conflictPolicy_Update = "Update";
+export const conflictPolicy_Add = "Add";
+export const conflictPolicy_Reset = "Reset";
+export const conflictPolicy_Recreate = "Recreate";
+export const conflictPolicy_Update = "Update";
 
-type ConflictPolicy = "Add" | "Reset" | "Recreate" | "Update";
-
+export type ConflictPolicy = "Add" | "Reset" | "Recreate" | "Update";
 
 
 /**
@@ -216,7 +195,7 @@ export const autoDeleteTarget_ForcedDone = "ForcedDone";
 export const autoDeleteTarget_RealDone = "RealDone";
 export const autoDeleteTarget_Done = "Done";
 
-type AutoDeleteTarget = "ForcedDone" | "RealDone" | "Done" ;
+export type AutoDeleteTarget = "ForcedDone" | "RealDone" | "Done" ;
 
 
 /**
@@ -227,47 +206,42 @@ export const autoDeleteMode_Delay = "Delay";
 export const autoDeleteMode_Immediately = "Immediately";
 export const autoDeleteMode_No = "No";
 
-type AutoDeleteMode = "Delay" | "Immediately" | "No";
+export type AutoDeleteMode = "Delay" | "Immediately" | "No";
 
 
-interface DCManagerProps {
-  clearDelay:number;
-  conflictPolicy : ConflictPolicy ;
-  autoDeleteTarget:AutoDeleteTarget ;
-  autoDeleteMode:AutoDeleteMode
+export interface DCManagerProps {
+  clearDelay?: number;
+  conflictPolicy?: ConflictPolicy;
+  autoDeleteTarget?: AutoDeleteTarget;
+  autoDeleteMode?: AutoDeleteMode
 }
 
-type DoneCountKey = string;
+export type DoneCountKey = string;
 
 
-interface DoneAgainOptions extends DoneCountProps{
-  key:DoneCountKey;
-  conflictPolicy?:ConflictPolicy;
-}
-
-
-type DoneAgainParam = DoneCountKey | DoneAgainOptions;
-
-
-interface AutoDeleteOptions {
-  autoDeleteMode ?: AutoDeleteMode;
-  autoDeleteTarget ?: AutoDeleteTarget;
-  clearDelay ?: number;
+export interface DoneAgainOptions extends DoneCountProps {
+  key: DoneCountKey;
+  conflictPolicy?: ConflictPolicy;
 }
 
 
-interface DoneCountManagerInfo {
-  total:number;
-  doneNum:number;
-  undoneNum:number;
-  allDone:boolean;
-  keys:DoneCountKey[];
+export type DoneAgainParam = DoneCountKey | DoneAgainOptions;
+export type NamedDoneAgainParam = DoneCountKey | NamedDoneAgainOptions;
+
+
+export interface AutoDeleteOptions {
+  autoDeleteMode?: AutoDeleteMode;
+  autoDeleteTarget?: AutoDeleteTarget;
+  clearDelay?: number;
 }
 
 
-
-interface NamedDoneAgainOptions extends DoneAgainOptions,NamedDoneCountProps{
-
+export interface DoneCountManagerInfo {
+  total: number;
+  doneNum: number;
+  undoneNum: number;
+  allDone: boolean;
+  keys: DoneCountKey[];
 }
 
 
@@ -278,11 +252,10 @@ export class DoneCountManager {
    * DCManagerProps = {clearDelay:number,conflictPolicy : ConflictPolicy ,autoDeleteTarget:AutoDeleteTarget ,autoDeleteMode:AutoDeleteMode}
    * @param props
    */
-  constructor(props?:DCManagerProps);
+  constructor(props?: DCManagerProps);
 
 
-
-  doneMap:Map<DoneCountKey,DoneCount>;
+  doneMap: Map<DoneCountKey, DoneCount>;
 
 
   /**
@@ -290,7 +263,7 @@ export class DoneCountManager {
    * @param totalOrOptions : DoneCountOptions
    * @returns {DoneCount}
    */
-  protected _createDoneCount(totalOrOptions:number|DoneCountProps):DoneCount;
+  protected _createDoneCount(totalOrOptions: number | DoneCountProps): DoneCount;
 
   /**
    * 在不改变完成数的情况下，根据 confOpts 配置 doneCount
@@ -299,15 +272,14 @@ export class DoneCountManager {
    * @returns {*}
    * @private
    */
-  protected _confDoneCount(doneCount:DoneCount,dcProps:DoneCountProps):DoneCount
+  protected _confDoneCount(doneCount: DoneCount, dcProps: DoneCountProps): DoneCount
 
 
   /**
    * 设置 延迟清除已完成的 DoneCount 的延时时间
    * @returns {number|*}
    */
-  clearDelay:number;
-
+  clearDelay: number;
 
 
   /**
@@ -318,7 +290,7 @@ export class DoneCountManager {
    * 注意：
    * - 只有 当 doneCount 已经完成时 才会被删除，否则，不会被删除；
    */
-  delayClearKey(key:DoneCountKey,delay?:number):void;
+  delayClearKey(key: DoneCountKey, delay?: number): void;
 
 
   /**
@@ -330,23 +302,21 @@ export class DoneCountManager {
    * - 只有 当 doneCount 已经完成时 才会被删除，否则，不会被删除；
    * - 当指定 key 的 doneCount 不存时，也会 返回 true ；
    */
-  clearKey(key:DoneCountKey):boolean;
+  clearKey(key: DoneCountKey): boolean;
 
-  clear():boolean;
+  clear(): boolean;
 
 
-  forcedDoneKey(key:DoneCountKey):void;
+  forcedDoneKey(key: DoneCountKey): void;
 
-  forcedDone():void;
+  forcedDone(): void;
 
 
   /**
    * 注册 DoneCount 时，当 注册的 DoneCount 的 total 和 已存在的 DoneCount 的 total 不一致时 的处理方式
    * @returns {string|*}
    */
-  conflictPolicy:ConflictPolicy;
-
-
+  conflictPolicy: ConflictPolicy;
 
 
   /**
@@ -356,7 +326,7 @@ export class DoneCountManager {
    * DoneAgainOptions = key | {key,conflictPolicy,...DoneCountProps}
    * @returns {DoneCount}
    */
-  register(keyOrOpts:DoneAgainParam):DoneCount;
+  register(keyOrOpts: DoneAgainParam): DoneCount;
 
 
   /**
@@ -365,26 +335,19 @@ export class DoneCountManager {
    * @param doneNum
    * @returns DoneCount | Error
    */
-  unsafeDoneAgain(keyOrOpts:DoneAgainParam,doneNum?:number):DoneCount|Error;
-
-
+  unsafeDoneAgain(keyOrOpts: DoneAgainParam, doneNum?: number): DoneCount | Error;
 
 
   /**
    * autoDeleteTarget : AutoDeleteTarget    自动删除目标
    */
-  autoDeleteTarget:AutoDeleteTarget;
-
-
-
-
+  autoDeleteTarget: AutoDeleteTarget;
 
 
   /**
    * autoDeleteMode : AutoDeleteMode   自动删除模式
    */
-  autoDeleteMode:AutoDeleteMode;
-
+  autoDeleteMode: AutoDeleteMode;
 
 
   /**
@@ -394,7 +357,7 @@ export class DoneCountManager {
    *
    * AutoDeleteOptions = {autoDeleteMode : AutoDeleteMode,autoDeleteTarget : AutoDeleteTarget,clearDelay : number}
    */
-  autoDelete(key:DoneCountKey,options?:AutoDeleteOptions):void;
+  autoDelete(key: DoneCountKey, options?: AutoDeleteOptions): void;
 
 
   /**
@@ -403,60 +366,60 @@ export class DoneCountManager {
    * @param doneNum : DoneNamesOrNum
    * @returns {*}
    */
-  doneAgain(keyOrOpts:DoneAgainParam,doneNum?:number):DoneCount;
+  doneAgain(keyOrOpts: DoneAgainParam, doneNum?: number): DoneCount;
 
 
-  getDoneCount(key:DoneCountKey):DoneCount;
+  getDoneCount(key: DoneCountKey): DoneCount;
 
 
+  getUndoneNum(key: DoneCountKey): number;
 
-  getUndoneNum(key:DoneCountKey):number;
-
-  getDone(key:DoneCountKey):boolean;
-
+  getDone(key: DoneCountKey): boolean;
 
 
-
-  readonly info:DoneCountManagerInfo;
-
-
-  readonly total:number;
+  readonly info: DoneCountManagerInfo;
 
 
-  readonly doneNum:number;
+  readonly total: number;
 
 
+  readonly doneNum: number;
 
-  readonly undoneNum:number;
 
-  readonly done:boolean;
+  readonly undoneNum: number;
+
+  readonly done: boolean;
 
 }
 
 
+export interface NamedDoneAgainOptions extends DoneAgainOptions, NamedDoneCountProps {
+
+}
 
 
+export interface NDCManagerProps extends DCManagerProps {
+  autoIncrTotalIfRepeat?: boolean;
+}
 
 
+export class NamedDoneCountManager extends DoneCountManager {
 
-
-export class NamedDoneCountManager extends DoneCountManager{
-
+  constructor(props?: NDCManagerProps);
 
   /**
    * 创建 DoneCount 实例
    * @param totalOrOptions
    * @returns {DoneCount}
    */
-  protected _createDoneCount(totalOrOptions:number|DoneCountProps):NamedDoneCount;
-
+  protected _createDoneCount(totalOrOptions: number | DoneCountProps): NamedDoneCount;
 
 
   /**
    * DoneCount 的 autoIncrTotalIfRepeat 的默认值
    * @type {boolean}
    */
-  autoIncrTotalIfRepeat:boolean;
+  autoIncrTotalIfRepeat: boolean;
 
 
   /**
@@ -466,7 +429,7 @@ export class NamedDoneCountManager extends DoneCountManager{
    * @returns {*}
    * @private
    */
-  protected _confDoneCount(doneCount:DoneCount,confOpts:NamedDoneCountProps):DoneCount;
+  protected _confDoneCount(doneCount: DoneCount, confOpts: NamedDoneCountProps): NamedDoneCount;
 
 
   /**
@@ -477,7 +440,14 @@ export class NamedDoneCountManager extends DoneCountManager{
    *
    * DoneAgainOptions = {key,namesOrNum,names,doneNum,...}
    */
-  unsafeDoneAgain(keyOrOpts:DoneAgainParam,namesOrNum?:DoneNamesOrNum):DoneCount|Error;
+  unsafeDoneAgain(keyOrOpts: NamedDoneAgainParam, namesOrNum?: DoneNamesOrNum): NamedDoneCount | Error;
+
+
+  register(keyOrOpts: NamedDoneAgainParam): NamedDoneCount;
+
+  doneAgain(keyOrOpts: NamedDoneAgainParam, doneNum?: number): NamedDoneCount;
+
+  getDoneCount(key: DoneCountKey): NamedDoneCount;
 
 
 }

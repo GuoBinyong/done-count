@@ -1,6 +1,6 @@
 {
   "name": "done-count",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "done-count 也叫做 完成计数，用于统计一组操作的完成情况",
   "main": "dist/done-count.umd.js",
   "module": "src/index",

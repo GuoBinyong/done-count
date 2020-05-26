@@ -4,15 +4,60 @@
   (global = global || self, factory(global.dc = {}));
 }(this, (function (exports) { 'use strict';
 
+  function _assertThisInitialized(self) {
+    if (self === void 0) {
+      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }
+
+    return self;
+  }
+
+  var assertThisInitialized = _assertThisInitialized;
+
+  function createCommonjsModule(fn, module) {
+  	return module = { exports: {} }, fn(module, module.exports), module.exports;
+  }
+
+  var setPrototypeOf = createCommonjsModule(function (module) {
+  function _setPrototypeOf(o, p) {
+    module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+      o.__proto__ = p;
+      return o;
+    };
+
+    return _setPrototypeOf(o, p);
+  }
+
+  module.exports = _setPrototypeOf;
+  });
+
+  function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+      throw new TypeError("Super expression must either be null or a function");
+    }
+
+    subClass.prototype = Object.create(superClass && superClass.prototype, {
+      constructor: {
+        value: subClass,
+        writable: true,
+        configurable: true
+      }
+    });
+    if (superClass) setPrototypeOf(subClass, superClass);
+  }
+
+  var inherits = _inherits;
+
+  var _typeof_1 = createCommonjsModule(function (module) {
   function _typeof(obj) {
     "@babel/helpers - typeof";
 
     if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-      _typeof = function (obj) {
+      module.exports = _typeof = function _typeof(obj) {
         return typeof obj;
       };
     } else {
-      _typeof = function (obj) {
+      module.exports = _typeof = function _typeof(obj) {
         return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
       };
     }
@@ -20,11 +65,75 @@
     return _typeof(obj);
   }
 
+  module.exports = _typeof;
+  });
+
+  function _possibleConstructorReturn(self, call) {
+    if (call && (_typeof_1(call) === "object" || typeof call === "function")) {
+      return call;
+    }
+
+    return assertThisInitialized(self);
+  }
+
+  var possibleConstructorReturn = _possibleConstructorReturn;
+
+  var getPrototypeOf = createCommonjsModule(function (module) {
+  function _getPrototypeOf(o) {
+    module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+      return o.__proto__ || Object.getPrototypeOf(o);
+    };
+    return _getPrototypeOf(o);
+  }
+
+  module.exports = _getPrototypeOf;
+  });
+
+  function _objectWithoutPropertiesLoose(source, excluded) {
+    if (source == null) return {};
+    var target = {};
+    var sourceKeys = Object.keys(source);
+    var key, i;
+
+    for (i = 0; i < sourceKeys.length; i++) {
+      key = sourceKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      target[key] = source[key];
+    }
+
+    return target;
+  }
+
+  var objectWithoutPropertiesLoose = _objectWithoutPropertiesLoose;
+
+  function _objectWithoutProperties(source, excluded) {
+    if (source == null) return {};
+    var target = objectWithoutPropertiesLoose(source, excluded);
+    var key, i;
+
+    if (Object.getOwnPropertySymbols) {
+      var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+      for (i = 0; i < sourceSymbolKeys.length; i++) {
+        key = sourceSymbolKeys[i];
+        if (excluded.indexOf(key) >= 0) continue;
+        if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+        target[key] = source[key];
+      }
+    }
+
+    return target;
+  }
+
+  var objectWithoutProperties = _objectWithoutProperties;
+
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
     }
   }
+
+  var classCallCheck = _classCallCheck;
 
   function _defineProperties(target, props) {
     for (var i = 0; i < props.length; i++) {
@@ -42,6 +151,8 @@
     return Constructor;
   }
 
+  var createClass = _createClass;
+
   function _defineProperty(obj, key, value) {
     if (key in obj) {
       Object.defineProperty(obj, key, {
@@ -57,118 +168,11 @@
     return obj;
   }
 
-  function _inherits(subClass, superClass) {
-    if (typeof superClass !== "function" && superClass !== null) {
-      throw new TypeError("Super expression must either be null or a function");
-    }
+  var defineProperty = _defineProperty;
 
-    subClass.prototype = Object.create(superClass && superClass.prototype, {
-      constructor: {
-        value: subClass,
-        writable: true,
-        configurable: true
-      }
-    });
-    if (superClass) _setPrototypeOf(subClass, superClass);
-  }
+  function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
 
-  function _getPrototypeOf(o) {
-    _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-      return o.__proto__ || Object.getPrototypeOf(o);
-    };
-    return _getPrototypeOf(o);
-  }
-
-  function _setPrototypeOf(o, p) {
-    _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-      o.__proto__ = p;
-      return o;
-    };
-
-    return _setPrototypeOf(o, p);
-  }
-
-  function _isNativeReflectConstruct() {
-    if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-    if (Reflect.construct.sham) return false;
-    if (typeof Proxy === "function") return true;
-
-    try {
-      Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  function _objectWithoutPropertiesLoose(source, excluded) {
-    if (source == null) return {};
-    var target = {};
-    var sourceKeys = Object.keys(source);
-    var key, i;
-
-    for (i = 0; i < sourceKeys.length; i++) {
-      key = sourceKeys[i];
-      if (excluded.indexOf(key) >= 0) continue;
-      target[key] = source[key];
-    }
-
-    return target;
-  }
-
-  function _objectWithoutProperties(source, excluded) {
-    if (source == null) return {};
-
-    var target = _objectWithoutPropertiesLoose(source, excluded);
-
-    var key, i;
-
-    if (Object.getOwnPropertySymbols) {
-      var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
-
-      for (i = 0; i < sourceSymbolKeys.length; i++) {
-        key = sourceSymbolKeys[i];
-        if (excluded.indexOf(key) >= 0) continue;
-        if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
-        target[key] = source[key];
-      }
-    }
-
-    return target;
-  }
-
-  function _assertThisInitialized(self) {
-    if (self === void 0) {
-      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-    }
-
-    return self;
-  }
-
-  function _possibleConstructorReturn(self, call) {
-    if (call && (typeof call === "object" || typeof call === "function")) {
-      return call;
-    }
-
-    return _assertThisInitialized(self);
-  }
-
-  function _createSuper(Derived) {
-    return function () {
-      var Super = _getPrototypeOf(Derived),
-          result;
-
-      if (_isNativeReflectConstruct()) {
-        var NewTarget = _getPrototypeOf(this).constructor;
-
-        result = Reflect.construct(Super, arguments, NewTarget);
-      } else {
-        result = Super.apply(this, arguments);
-      }
-
-      return _possibleConstructorReturn(this, result);
-    };
-  }
+  function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
   /**
    * DoneCount
@@ -176,7 +180,7 @@
    * 用于统计一组操作的完成情况
    */
   var DoneCount = /*#__PURE__*/function () {
-    _createClass(DoneCount, [{
+    createClass(DoneCount, [{
       key: "total",
 
       /**
@@ -216,13 +220,13 @@
     }]);
 
     function DoneCount(totalOrOptions) {
-      _classCallCheck(this, DoneCount);
+      classCallCheck(this, DoneCount);
 
-      _defineProperty(this, "forcedDone", false);
+      defineProperty(this, "forcedDone", false);
 
-      if (_typeof(totalOrOptions) == "object") {
+      if (_typeof_1(totalOrOptions) == "object") {
         var total = totalOrOptions.total,
-            otherProps = _objectWithoutProperties(totalOrOptions, ["total"]);
+            otherProps = objectWithoutProperties(totalOrOptions, ["total"]);
       } else {
         total = totalOrOptions;
       }
@@ -234,7 +238,7 @@
       }
     }
 
-    _createClass(DoneCount, [{
+    createClass(DoneCount, [{
       key: "reset",
 
       /**
@@ -296,7 +300,7 @@
     return DoneCount;
   }();
   var NamedDoneCount = /*#__PURE__*/function (_DoneCount) {
-    _inherits(NamedDoneCount, _DoneCount);
+    inherits(NamedDoneCount, _DoneCount);
 
     var _super = _createSuper(NamedDoneCount);
 
@@ -312,21 +316,21 @@
     function NamedDoneCount(totalOrOptions) {
       var _this;
 
-      _classCallCheck(this, NamedDoneCount);
+      classCallCheck(this, NamedDoneCount);
 
-      if (_typeof(totalOrOptions) == "object") {
+      if (_typeof_1(totalOrOptions) == "object") {
         var total = totalOrOptions.total,
             namesOrNum = totalOrOptions.namesOrNum,
             names = totalOrOptions.names,
             doneNum = totalOrOptions.doneNum,
-            otherProps = _objectWithoutProperties(totalOrOptions, ["total", "namesOrNum", "names", "doneNum"]);
+            otherProps = objectWithoutProperties(totalOrOptions, ["total", "namesOrNum", "names", "doneNum"]);
       } else {
         total = totalOrOptions;
       }
 
       _this = _super.call(this, total);
 
-      _defineProperty(_assertThisInitialized(_this), "autoIncrTotalIfRepeat", void 0);
+      defineProperty(assertThisInitialized(_this), "autoIncrTotalIfRepeat", void 0);
 
       _this.total = total;
 
@@ -339,7 +343,7 @@
       }
 
       if (otherProps) {
-        Object.assign(_assertThisInitialized(_this), otherProps);
+        Object.assign(assertThisInitialized(_this), otherProps);
       }
 
       return _this;
@@ -350,7 +354,7 @@
      */
 
 
-    _createClass(NamedDoneCount, [{
+    createClass(NamedDoneCount, [{
       key: "resetDoneNum",
 
       /**
@@ -558,12 +562,12 @@
     function DoneCountManager() {
       var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-      _classCallCheck(this, DoneCountManager);
+      classCallCheck(this, DoneCountManager);
 
       Object.assign(this, props);
     }
 
-    _createClass(DoneCountManager, [{
+    createClass(DoneCountManager, [{
       key: "_createDoneCount",
 
       /**
@@ -586,7 +590,7 @@
       key: "_confDoneCount",
       value: function _confDoneCount(doneCount, dcProps) {
         var doneNum = dcProps.doneNum,
-            otherProps = _objectWithoutProperties(dcProps, ["doneNum"]);
+            otherProps = objectWithoutProperties(dcProps, ["doneNum"]);
 
         Object.assign(doneCount, otherProps);
         return doneCount;
@@ -637,7 +641,7 @@
         var done = doneCount ? doneCount.done : true;
 
         if (doneCount && done) {
-          doneMap.delete(key);
+          doneMap["delete"](key);
         }
 
         return done;
@@ -684,12 +688,12 @@
        * @returns {DoneCount}
        */
       value: function register(keyOrOpts) {
-        if (_typeof(keyOrOpts) == "object") {
+        if (_typeof_1(keyOrOpts) == "object") {
           var key = keyOrOpts.key,
               _keyOrOpts$total = keyOrOpts.total,
               total = _keyOrOpts$total === void 0 ? 1 : _keyOrOpts$total,
               conflictPolicy = keyOrOpts.conflictPolicy,
-              otherOpts = _objectWithoutProperties(keyOrOpts, ["key", "total", "conflictPolicy"]);
+              otherOpts = objectWithoutProperties(keyOrOpts, ["key", "total", "conflictPolicy"]);
         } else {
           key = keyOrOpts;
           total = 1;
@@ -752,11 +756,11 @@
 
         var doneNum = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
         return function (doneNum) {
-          if (_typeof(keyOrOpts) == "object") {
+          if (_typeof_1(keyOrOpts) == "object") {
             var key = keyOrOpts.key,
                 _keyOrOpts$doneNum = keyOrOpts.doneNum,
                 doneNum = _keyOrOpts$doneNum === void 0 ? 1 : _keyOrOpts$doneNum,
-                otherProps = _objectWithoutProperties(keyOrOpts, ["key", "doneNum"]);
+                otherProps = objectWithoutProperties(keyOrOpts, ["key", "doneNum"]);
           } else {
             key = keyOrOpts;
           }
@@ -996,14 +1000,14 @@
     return DoneCountManager;
   }();
   var NamedDoneCountManager = /*#__PURE__*/function (_DoneCountManager) {
-    _inherits(NamedDoneCountManager, _DoneCountManager);
+    inherits(NamedDoneCountManager, _DoneCountManager);
 
     var _super2 = _createSuper(NamedDoneCountManager);
 
     function NamedDoneCountManager() {
       var _this5;
 
-      _classCallCheck(this, NamedDoneCountManager);
+      classCallCheck(this, NamedDoneCountManager);
 
       for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
@@ -1011,12 +1015,12 @@
 
       _this5 = _super2.call.apply(_super2, [this].concat(args));
 
-      _defineProperty(_assertThisInitialized(_this5), "autoIncrTotalIfRepeat", void 0);
+      defineProperty(assertThisInitialized(_this5), "autoIncrTotalIfRepeat", void 0);
 
       return _this5;
     }
 
-    _createClass(NamedDoneCountManager, [{
+    createClass(NamedDoneCountManager, [{
       key: "_createDoneCount",
 
       /**
@@ -1048,7 +1052,7 @@
             doneNum = confOpts.doneNum,
             _confOpts$autoIncrTot = confOpts.autoIncrTotalIfRepeat,
             autoIncrTotalIfRepeat = _confOpts$autoIncrTot === void 0 ? this.autoIncrTotalIfRepeat : _confOpts$autoIncrTot,
-            otherOpts = _objectWithoutProperties(confOpts, ["namesOrNum", "names", "doneNum", "autoIncrTotalIfRepeat"]);
+            otherOpts = objectWithoutProperties(confOpts, ["namesOrNum", "names", "doneNum", "autoIncrTotalIfRepeat"]);
 
         otherOpts.autoIncrTotalIfRepeat = autoIncrTotalIfRepeat;
         Object.assign(doneCount, otherOpts);
@@ -1071,12 +1075,12 @@
 
         var namesOrNum = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
         return function (namesOrNum) {
-          if (_typeof(keyOrOpts) == "object") {
+          if (_typeof_1(keyOrOpts) == "object") {
             var key = keyOrOpts.key,
                 namesOrNum = keyOrOpts.namesOrNum,
                 names = keyOrOpts.names,
                 doneNum = keyOrOpts.doneNum,
-                otherProps = _objectWithoutProperties(keyOrOpts, ["key", "namesOrNum", "names", "doneNum"]);
+                otherProps = objectWithoutProperties(keyOrOpts, ["key", "namesOrNum", "names", "doneNum"]);
 
             namesOrNum = doneNum || namesOrNum || 1;
           } else {
